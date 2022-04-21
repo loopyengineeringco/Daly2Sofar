@@ -75,6 +75,16 @@ For extracting the data into Home Asisstant sensors, use Node-Red. You can impor
 ![Daly2Sofar Node-Red to HA example](https://user-images.githubusercontent.com/43951291/164437077-1af12d01-b174-4be1-bb78-2a273e6da55a.jpg)
 (you may need to install Moving Average filter if you want smoothing of data)
 
+Home Assistant dashboard example
+![Home Assistant sensors example](https://user-images.githubusercontent.com/43951291/164439575-7c585c8e-12b4-412a-9ef5-60dd962c2ea7.jpg)
+
+When the battery is discharging, Node-RED will calculate the remaining battery time based on the current discharge rate.
+This has some hard-coded variables - it's based on a 10kWh battery and 80% DOD. Make sure you customise them if you want to use this Flow :-)
+![image](https://user-images.githubusercontent.com/43951291/164440385-f34659a5-c4ad-48e3-82c1-d9a69adf85bb.png)
+
+![image](https://user-images.githubusercontent.com/43951291/164440193-95620cbc-c11d-4a18-8acf-261b9363472a.png)
+
+
 # To do:
 - Need to figure out how to obtain battery cycles from BMS.
 - Tidy up code/refactor where poss.
