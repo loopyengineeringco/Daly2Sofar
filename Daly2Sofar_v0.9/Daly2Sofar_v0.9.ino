@@ -70,6 +70,7 @@ cellimbalance
 For extracting the data into Home Asisstant sensors, use Node-Red. Have a look at the github for an example Node-Red setup.
 
 To do:
+- Do proper DALY timeout check. Not sure if the external library supports that tho... Might have to bring it in.
 - Do proper CANBUS status check. Currently, CAN indicator will go live after the data send, whether it's succesfull or not.
 - Need to figure out how to obtain battery cycles from BMS.
 - Tidy up code/refactor where poss.
