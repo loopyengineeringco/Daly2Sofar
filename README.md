@@ -34,12 +34,15 @@ https://www.scadacore.com/tools/programming-calculators/online-hex-converter/ fo
 # ESP32 pin remapping
 Make sure the I2C pins are mapped correctly for the Oled to work. For me, pins 21 and 22 work great
 C:\Users\XXXXX\Documents\Arduino\libraries\Adafruit_SSD1306-1.1.2\Adafruit_SSD1306.cpp
+```
 #define I2C_SDA 21
 #define I2C_SCL 22
+```
 
 And also Serial2 needs to be correctly mapped in this file (This is Windows. Sorry I don't know where it is on a Mac)
 C:\Users\XXXXX\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.6\cores\esp32\HardwareSerial.cpp
 Look for this near the top:
+```
 #ifndef RX2
 #define RX2 16
 #endif
@@ -47,14 +50,16 @@ Look for this near the top:
 #ifndef TX2
 #define TX2 17
 #endif
+```
 ******
 
 
 # MQTT info:
 Subscribe your MQTT client to:
-Daly2Sofar/state
+```Daly2Sofar/state```
 
 topics published are:
+```
 soc
 voltage
 current
@@ -63,7 +68,7 @@ temp
 lowestcell
 highestcell
 cellimbalance
-
+```
 For extracting the data into Home Asisstant sensors, use Node-Red. Have a look at the github for an example Node-Red setup.
 
 # To do:
