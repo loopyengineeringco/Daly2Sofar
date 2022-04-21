@@ -1,7 +1,6 @@
 # Daly2Sofar v0.9 - beta
 ESP32 bridge allowing Daly Smart BMS to be used with a Sofar inverter/charger (and others that use SMA CANBUS protocol).
-![Daly2Sofar_1](https://user-images.githubusercontent.com/43951291/164450862-89615694-7e51-4a53-a4ad-102c156572c5.jpg)
-
+![image](https://user-images.githubusercontent.com/43951291/164516928-52ea70e6-35d5-4c46-9d18-d0e2efe84e6b.png)
 
 
 It connects to Daly via UART and transmits to the inverter on CANBUS (SMA protocol).
@@ -14,7 +13,8 @@ May be compatible with other inverters that use the SMA protocol.
 
 My testing showed that Daly UART port works on 3.3v. PLEASE measure yours before connecting the ESP. Some users report 5V.
 
-![Daly2Sofar_2](https://user-images.githubusercontent.com/43951291/164450885-7a7a2b6e-d87b-47af-a21a-84e1c9d92381.jpg)
+![image](https://user-images.githubusercontent.com/43951291/164516992-e57eed06-884a-4738-b35d-9d546e7b2dab.png)
+
 ![Daly2Sofar_3](https://user-images.githubusercontent.com/43951291/164450894-d7f85e7a-e5d1-40e6-8250-39d048bfd524.jpg)
 
 
