@@ -121,6 +121,10 @@ https://github.com/marvinroger/async-mqtt-client
 
 # Notes/links
 
+Developed on Arduino IDE 1.8.5. IDE version 1.6.14 failed to compile. Downgrade if you have issues
+
+Using arduino ESP32 Core version 1.0.6
+
 Using SMA_CAN_protocol.pdf for the CAN IDs and data format info (google will find you the PDF)
 
 Using https://cryptii.com/pipes/integer-encoder for working out hex values
