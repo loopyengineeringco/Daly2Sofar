@@ -1,5 +1,8 @@
 # Daly2Sofar v0.9 - beta
 ESP32 bridge allowing Daly Smart BMS to be used with a Sofar inverter/charger (and others that use SMA CANBUS protocol).
+![Daly2Sofar_1](https://user-images.githubusercontent.com/43951291/164450862-89615694-7e51-4a53-a4ad-102c156572c5.jpg)
+
+
 
 It connects to Daly via UART and transmits to the inverter on CANBUS (SMA protocol).
 At the same time, it will transmit the BMS data to an MQTT broker if it can connect to your WiFi.
@@ -10,16 +13,31 @@ May be compatible with other inverters that use the SMA protocol.
 
 My testing showed that Daly UART port works on 3.3v. PLEASE measure yours before connecting the ESP. Some users report 5V.
 
+![Daly2Sofar_2](https://user-images.githubusercontent.com/43951291/164450885-7a7a2b6e-d87b-47af-a21a-84e1c9d92381.jpg)
+![Daly2Sofar_3](https://user-images.githubusercontent.com/43951291/164450894-d7f85e7a-e5d1-40e6-8250-39d048bfd524.jpg)
+
+
+
+# PSA:
+USE THIS AT YOUR OWN RISK!
+Batteries are dangerous. Don't come to me if you burn your house down.
+This release is a working prototype. It might freeze, there might be glitches. Your battery might overcharge/undercharge. Make sure your BMS is set up properly with your own limits.
+USE THIS AT YOUR OWN RISK!
+
 # Schematic
 ![Daly2Sofar schematic](https://user-images.githubusercontent.com/43951291/164440895-b26a7267-7dd1-4e10-8e55-49fe68698d4c.jpg)
-
-
 
 
 # Isolation
 Some battery setups earth the battery negative, others don't.
 For the ones that aren't earthed, you may get a ID05 Fault on the inverter when you connect canbus.
+You might get a shock if you touch the comms/3v3/ground pins coming from the BMS, even though they're supposed to be only 3.3v.
+
+Ask me how I know!
+
 This is because the Daly UART ground is battery ground, and it makes its way to the inverter.
+It might be higher or lower voltage potential, in respect to earth.
+
 The Daly needs to be isolated in this case, using a digital isolation IC.
 Opto-coupler's don't work as the signal becomes inverted. ESP32 serial can be inverted by software but Daly can't.
 I used a IL716-3E isolator IC and soldered dupont pins to it's legs - it's tiny, it's not easy!
