@@ -85,6 +85,10 @@ This has some hard-coded variables - it's based on a 10kWh battery and 80% DOD. 
 - Tidy up code/refactor where poss.
 - Longer term stability testing.
 
+# Arduino dependencies
+https://github.com/me-no-dev/AsyncTCP
+https://github.com/marvinroger/async-mqtt-client
+
 # Notes/links
 
 Using SMA_CAN_protocol.pdf for the CAN IDs and data format info (google will find you the PDF)
