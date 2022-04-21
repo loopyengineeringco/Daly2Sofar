@@ -121,7 +121,7 @@ https://github.com/marvinroger/async-mqtt-client
 
 # Notes/links
 
-Developed on Arduino IDE 1.8.5. IDE version 1.6.14 failed to compile. Downgrade if you have issues
+Developed on Arduino IDE 1.8.5. Version 1.6.14 failed to compile. Downgrade if you have issues
 
 Using arduino ESP32 Core version 1.0.6
 
