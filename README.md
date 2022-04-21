@@ -87,6 +87,10 @@ This has some hard-coded variables - it's based on a 10kWh battery and 80% DOD. 
 
 # Arduino dependencies
 
+https://github.com/maland16/daly-bms-uart
+
+https://github.com/miwagner/ESP32-Arduino-CAN
+
 https://github.com/me-no-dev/AsyncTCP
 
 https://github.com/marvinroger/async-mqtt-client
