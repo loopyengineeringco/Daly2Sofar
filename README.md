@@ -11,7 +11,8 @@ May be compatible with other inverters that use the SMA protocol.
 My testing showed that Daly UART port works on 3.3v. PLEASE measure yours before connecting the ESP. Some users report 5V.
 
 # Schematic
-![Daly2Sofar schematic](https://user-images.githubusercontent.com/43951291/164433391-5f333955-79c3-4bfa-9f3e-f2f51964ec53.jpg)
+![Daly2Sofar schematic](https://user-images.githubusercontent.com/43951291/164440895-b26a7267-7dd1-4e10-8e55-49fe68698d4c.jpg)
+
 
 
 
@@ -23,12 +24,6 @@ The Daly needs to be isolated in this case, using a digital isolation IC.
 Opto-coupler's don't work as the signal becomes inverted. ESP32 serial can be inverted by software but Daly can't.
 I used a IL716-3E isolator IC and soldered dupont pins to it's legs - it's tiny, it's not easy!
 If you find an isolator IC module that is cheap and works without soldering, please let me know!
-******
-
-Using SMA_CAN_protocol.pdf for the CAN IDs and data format info (google will find you the PDF)
-Using https://cryptii.com/pipes/integer-encoder for working out hex values
-VIEW TEXT > DECODE INTEGER (LITTLE ENDIAN) U16 > VIEW BYTES HEX GROUPED BY BYTES
-https://www.scadacore.com/tools/programming-calculators/online-hex-converter/ for checking hex values
 
 
 # ESP32 pin remapping
@@ -89,3 +84,13 @@ This has some hard-coded variables - it's based on a 10kWh battery and 80% DOD. 
 - Need to figure out how to obtain battery cycles from BMS.
 - Tidy up code/refactor where poss.
 - Longer term stability testing.
+
+# Notes/links
+
+Using SMA_CAN_protocol.pdf for the CAN IDs and data format info (google will find you the PDF)
+
+Using https://cryptii.com/pipes/integer-encoder for working out hex values
+
+VIEW TEXT > DECODE INTEGER (LITTLE ENDIAN) U16 > VIEW BYTES HEX GROUPED BY BYTES
+
+https://www.scadacore.com/tools/programming-calculators/online-hex-converter/ for checking hex values
