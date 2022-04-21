@@ -86,7 +86,9 @@ This has some hard-coded variables - it's based on a 10kWh battery and 80% DOD. 
 - Longer term stability testing.
 
 # Arduino dependencies
+
 https://github.com/me-no-dev/AsyncTCP
+
 https://github.com/marvinroger/async-mqtt-client
 
 # Notes/links
