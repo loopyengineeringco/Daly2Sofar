@@ -68,7 +68,7 @@ Look for this near the top:
 
 
 # MQTT info:
-Add your WiFi and MQTT details to the top of the sketch, as well as your battery capacity and preferred charging voltage (Capacity is broken at the moment):
+Add your WiFi and MQTT details to the top of the sketch, as well as your battery capacity and preferred charging voltage (Capacity is broken at the moment, but the Inverter seems happy nonetheless):
 
 ![image](https://user-images.githubusercontent.com/43951291/164454052-098721e5-b45f-4cef-878d-7d6928e60f59.png)
 
