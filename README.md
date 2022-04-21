@@ -26,7 +26,7 @@ This release is a working prototype. It might freeze, there might be glitches. Y
 USE THIS AT YOUR OWN RISK!
 
 # Schematic
-![Daly2Sofar schematic](https://user-images.githubusercontent.com/43951291/164440895-b26a7267-7dd1-4e10-8e55-49fe68698d4c.jpg)
+![image](https://user-images.githubusercontent.com/43951291/164475730-a8ae568a-6bad-427c-bce5-01f2ea579785.png)
 
 
 # Isolation
