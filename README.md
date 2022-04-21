@@ -104,7 +104,6 @@ This has some hard-coded variables - it's based on a 10kWh battery and 80% DOD. 
 
 # To do:
 - Fix battery capacity.
-- Trace all the dependencies and link them.
 - Need to figure out how to obtain battery cycles from BMS.
 - Tidy up code/refactor where poss.
 - Longer term stability testing.
