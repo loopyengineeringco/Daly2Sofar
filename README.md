@@ -68,9 +68,9 @@ Look for this near the top:
 
 
 # MQTT info:
-Add your WiFi and MQTT details to the top of the sketch:
+Add your WiFi and MQTT details to the top of the sketch, as well as your battery capacity and preferred charging voltage (Capacity is broken at the moment):
 
-![image](https://user-images.githubusercontent.com/43951291/164453186-0508342f-6423-4861-b216-d8a3d83843e1.png)
+![image](https://user-images.githubusercontent.com/43951291/164454052-098721e5-b45f-4cef-878d-7d6928e60f59.png)
 
 Subscribe your MQTT client to:
 ```Daly2Sofar/state```
@@ -103,6 +103,7 @@ This has some hard-coded variables - it's based on a 10kWh battery and 80% DOD. 
 
 
 # To do:
+- Fix battery capacity.
 - Trace all the dependencies and link them.
 - Need to figure out how to obtain battery cycles from BMS.
 - Tidy up code/refactor where poss.
