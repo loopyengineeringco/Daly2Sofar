@@ -43,18 +43,29 @@ void oledMessage(String line1, String line2, String line3, String line4, String 
     display.println(oledLine5);
   }
 
-  if (WiFiStatus) {
-    display.drawBitmap(96, 0, wifiOn, 32, 14, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
+  if (BMSOnline) {
+    display.drawBitmap(99, 0, dalyOn, 29, 13, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
   } else {
-    display.drawBitmap(96, 0, wifiOff, 32, 14, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
+    display.drawBitmap(99, 0, dalyOff, 32, 13, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
+  }
+
+  if (CANOnline) {
+    display.drawBitmap(99, 14, canOn, 29, 13, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
+  } else {
+    display.drawBitmap(99, 14, canOff, 32, 13, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
+  }
+
+  if (WiFiStatus) {
+    display.drawBitmap(99, 28, wifiOn, 29, 13, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
+  } else {
+    display.drawBitmap(99, 28, wifiOff, 32, 13, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
   }
 
   if (MQTTStatus){
-    display.drawBitmap(96, 16, mqttOn, 32, 14, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
+    display.drawBitmap(99, 42, mqttOn, 29, 13, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
   } else {
-    display.drawBitmap(96, 16, mqttOff, 32, 14, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
+    display.drawBitmap(99, 42, mqttOff, 29, 13, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
   }
 
   display.display();
 }
-

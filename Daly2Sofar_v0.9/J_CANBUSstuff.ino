@@ -16,6 +16,7 @@ void sendCanTXFrame(byte dataArray[],int dataLength) {
   tx_frame.data.u8[6] = dataArray[8];
   tx_frame.data.u8[7] = dataArray[9];
   ESP32Can.CANWriteFrame(&tx_frame);
+  CANOnline = true;
   delay(5); // just to make sure it gets sent in peace. TRY INCREASING THIS
 }
 
