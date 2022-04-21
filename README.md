@@ -69,7 +69,11 @@ lowestcell
 highestcell
 cellimbalance
 ```
-For extracting the data into Home Asisstant sensors, use Node-Red. Have a look at the github for an example Node-Red setup.
+
+# Node-RED
+For extracting the data into Home Asisstant sensors, use Node-Red. You can import the ```Daly2Sofar Node-Red to Home Assistant flow.json```flow to extract the data into sensor entities, it will look like this:
+![Daly2Sofar Node-Red to HA example](https://user-images.githubusercontent.com/43951291/164437077-1af12d01-b174-4be1-bb78-2a273e6da55a.jpg)
+(you may need to install Moving Average filter if you want smoothing of data)
 
 # To do:
 - Need to figure out how to obtain battery cycles from BMS.
