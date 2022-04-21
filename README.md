@@ -7,6 +7,7 @@ ESP32 bridge allowing Daly Smart BMS to be used with a Sofar inverter/charger (a
 It connects to Daly via UART and transmits to the inverter on CANBUS (SMA protocol).
 At the same time, it will transmit the BMS data to an MQTT broker if it can connect to your WiFi.
 If it can't connect to WiFi or your MQTT broker, it will still work as a BMS-to-Inverter bridge.
+The icons on the OLED represent the WiFi & MQTT status. They will be crossed out if there is no connection.
 
 Data comms is one way only - data is requested from Daly and sent to the Inverter & over MQTT.
 May be compatible with other inverters that use the SMA protocol.
