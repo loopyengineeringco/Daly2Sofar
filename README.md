@@ -65,10 +65,13 @@ Look for this near the top:
 #define TX2 17
 #endif
 ```
-******
 
 
 # MQTT info:
+Add your WiFi and MQTT details to the top of the sketch:
+
+![image](https://user-images.githubusercontent.com/43951291/164453186-0508342f-6423-4861-b216-d8a3d83843e1.png)
+
 Subscribe your MQTT client to:
 ```Daly2Sofar/state```
 
