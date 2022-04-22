@@ -28,15 +28,6 @@ void WiFiEvent(WiFiEvent_t event) {
     }
 }
 
-void onMqttConnect(bool sessionPresent) {
-  Serial.println("Connected to MQTT.");
-  Serial.print("Session present: ");
-  Serial.println(sessionPresent);
-  MQTTStatus = true;
-  xTimerStart(mqttPublishXTimer, 0);
-  //mqttPublisherTimer->Start();
-}
-
 void onMqttDisconnect(AsyncMqttClientDisconnectReason reason) {
   Serial.println("Disconnected from MQTT.");
   xTimerStop(mqttPublishXTimer, 0);
@@ -120,12 +111,22 @@ void sendMQTTData() {
   String topic (deviceName);
   topic += "/state";
 
-  uint16_t packetIdPub2 = mqttClient.publish(const_cast<char*>(topic.c_str()), 2, true, const_cast<char*>(state.c_str()));
-  Serial.println("Publishing at QoS 2");
+  uint16_t packetIdPub2 = mqttClient.publish(const_cast<char*>(topic.c_str()), 1, true, const_cast<char*>(state.c_str()));
+  Serial.println("Publishing at QoS 1");
   Serial.print("Topic: ");
   Serial.println(topic);
   Serial.print("Payload: ");
   Serial.println(state);
 
   xTimerStart(mqttPublishXTimer, 0);
+}
+
+void onMqttConnect(bool sessionPresent) {
+  Serial.println("Connected to MQTT.");
+  Serial.print("Session present: ");
+  Serial.println(sessionPresent);
+  MQTTStatus = true;
+  sendMQTTData();
+  //xTimerStart(mqttPublishXTimer, 0);
+  //mqttPublisherTimer->Start();
 }

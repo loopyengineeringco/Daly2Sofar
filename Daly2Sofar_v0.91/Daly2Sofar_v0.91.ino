@@ -70,11 +70,18 @@ cellimbalance
 For extracting the data into Home Asisstant sensors, use Node-Red. Have a look at the github for an example Node-Red setup.
 
 To do:
-- Do proper DALY timeout check. Not sure if the external library supports that tho... Might have to bring it in.
-- Do proper CANBUS status check. Currently, CAN indicator will go live after the data send, whether it's succesfull or not.
+- Do proper CANBUS status check. Currently, CAN indicator will go live after the data send, whether it's succesfull or not. CAN only goes off if BMS not found.
 - Need to figure out how to obtain battery cycles from BMS.
 - Tidy up code/refactor where poss.
 - Longer term stablity testing.
+
+Notes/dependencies:
+- Developed on Arduino IDE 1.8.5. IDE version 1.6.14 failed to compile. Downgrade if you have issues
+- Using arduino ESP32 Core version 1.0.6
+- https://github.com/maland16/daly-bms-uart
+- https://github.com/miwagner/ESP32-Arduino-CAN
+- https://github.com/me-no-dev/AsyncTCP
+- https://github.com/marvinroger/async-mqtt-client
 
 */
 
@@ -86,7 +93,7 @@ float batteryChargeVoltage = 55.1; // Set your charge voltage - this doesn't com
 
 #define WIFI_SSID "yourwifiname"
 #define WIFI_PASSWORD "yourwifipass"
-static const char mqttUser[] = "yourmqttuser";
+static const char mqttUser[] = "yourmqttlogin";
 static const char mqttPassword[] = "yourmqttpass";
 const char* deviceName = "Daly2Sofar"; //Device name is used as the MQTT base topic.
 
@@ -95,6 +102,14 @@ const char* deviceName = "Daly2Sofar"; //Device name is used as the MQTT base to
 
 
 
+#include <WiFi.h>
+extern "C" {
+  #include "freertos/FreeRTOS.h"
+  #include "freertos/timers.h"
+}
+#include <AsyncMqttClient.h>
+
+AsyncMqttClient mqttClient;
 
 
 // ESP32 CAN Library: https://github.com/miwagner/ESP32-Arduino-CAN
@@ -141,26 +156,19 @@ String oledLine5;
 
 
 
-#include <WiFi.h>
-extern "C" {
-  #include "freertos/FreeRTOS.h"
-  #include "freertos/timers.h"
-}
-#include <AsyncMqttClient.h>
 
-
-
-AsyncMqttClient mqttClient;
 TimerHandle_t mqttReconnectTimer;
 TimerHandle_t wifiReconnectTimer;
 TimerHandle_t mqttPublishXTimer;
+TimerHandle_t dalyRetryXTimer;
+
 
 bool WiFiStatus = false;
 bool MQTTStatus = false;
 
 // USER SETUP VALUES:
 unsigned long previousMillisUARTCAN = 0;   // will store last time a CAN Message was send
-const int intervalUARTCAN = 1000;          // interval at which send CAN Messages (milliseconds)
+const int intervalUARTCAN = 2000;          // interval at which send CAN Messages (milliseconds)
 
 unsigned long previousMillisWIFIMQTT = 0;
 const int intervalWIFIMQTT = 2000; 

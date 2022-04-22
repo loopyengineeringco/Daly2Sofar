@@ -1,32 +1,41 @@
 void getEverythingFromDaly() {  
   // Grab values from BMS
-  bms.getPackMeasurements(volts, amps, percentage);
-  bms.getPackTemp(temp);
-  bms.getMinMaxCellVoltage(minCellVoltage, minCellNumber, maxCellVoltage, maxCellNumber);
+
   
-  if (volts == 0) {
+
+  
+  if (bms.getPackMeasurements(volts, amps, percentage) == false){
+    BMSOnline = false;
+    CANOnline = false;
     Serial.println("No connection with BMS. Check TX/RX polarity, and that BMS is awake...");
     oledMessage("No BMS found.", "Check TX/RX", "polarity,", "Make sure", "BMS is awake.");
-    //BMSOnline = false;
-    //bms.Init();
-    BMSOnline = true;
+    xTimerStart(dalyRetryXTimer, 0);
   } else {
+    //delay(20);
+    bms.getPackTemp(temp);
+    bms.getMinMaxCellVoltage(minCellVoltage, minCellNumber, maxCellVoltage, maxCellNumber);
+    //delay(20);
+    //delay(20);
     watts = amps*volts;
     cellImbalance = (maxCellVoltage-minCellVoltage)*1000;
-    oledMessage("SOC: "+String(percentage)+"%", "Volts: "+String(volts)+"V", "Amps: "+String(amps)+"A", "Min/Max: "+String(minCellVoltage)+"/"+String(maxCellVoltage), "Temp: "+String(temp));
+    oledMessage("SOC: "+String(percentage)+"%", "Volts: "+String(volts)+"V", "Amps: "+String(amps)+"A", "Hi/Lo: "+String(minCellVoltage)+"/"+String(maxCellVoltage), "Temp: "+String(temp));
     BMSOnline = true;
     // Print above to Serial
-    Serial.printf("V: %4.1f, I: %4.1f, \%:%4.1f\n",volts, amps, percentage);
+    //Serial.printf("V: %4.1f, I: %4.1f, \%:%4.1f\n",volts, amps, percentage);
     
     // Now the same thing, but for temperature
-    Serial.printf("Temp: %d\n",temp);
+    //Serial.printf("Temp: %d\n",temp);
     
     // And again, for min/max cell voltages
-    Serial.printf("Max Cell: Cell #%d at %4.3f\n",maxCellNumber,maxCellVoltage);
-    Serial.printf("Min Cell: Cell #%d at %4.3f\n",minCellNumber,minCellVoltage);    
+    //Serial.printf("Max Cell: Cell #%d at %4.3f\n",maxCellNumber,maxCellVoltage);
+    //Serial.printf("Min Cell: Cell #%d at %4.3f\n",minCellNumber,minCellVoltage);
   }
 }
 
+void dalyRetry() {
+  xTimerStop(dalyRetryXTimer, 0);
+  getEverythingFromDaly();
+}
 
 void updateTXFrames() {
   // SOC. 1:1 scaling, 2 bytes - easy.
@@ -61,7 +70,3 @@ void updateTXFrames() {
   CANData35F[7] = batteryCapacity;    // Arduino/C is big endian. So needs to shift the opposite way of the SMA protocol.
   CANData35F[6] = batteryCapacity>>8; // Currently reporting 51200ah :-D obvs wrong...
 }
-
-
-
-

@@ -23,9 +23,11 @@ void setup() {
   oledMessage("Hi", "Ola!", "Hello", "Labas", "Zdravstvuyte");
   delay(500);
 
-  mqttReconnectTimer = xTimerCreate("mqttTimer", pdMS_TO_TICKS(2000), pdFALSE, (void*)0, reinterpret_cast<TimerCallbackFunction_t>(connectToMqtt));
+  mqttReconnectTimer = xTimerCreate("mqttTimer", pdMS_TO_TICKS(5000), pdFALSE, (void*)0, reinterpret_cast<TimerCallbackFunction_t>(connectToMqtt));
   wifiReconnectTimer = xTimerCreate("wifiTimer", pdMS_TO_TICKS(2000), pdFALSE, (void*)0, reinterpret_cast<TimerCallbackFunction_t>(connectToWifi));
   mqttPublishXTimer = xTimerCreate("mqttPubTimer", pdMS_TO_TICKS(2000), pdFALSE, (void*)0, reinterpret_cast<TimerCallbackFunction_t>(sendMQTTData));
+  dalyRetryXTimer = xTimerCreate("dalyRetryTimer", pdMS_TO_TICKS(200), pdFALSE, (void*)0, reinterpret_cast<TimerCallbackFunction_t>(dalyRetry));
+
 
   WiFi.onEvent(WiFiEvent);
 
