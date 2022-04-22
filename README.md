@@ -129,7 +129,7 @@ Developed on Arduino IDE 1.8.5. Version 1.6.14 failed to compile. Downgrade if y
 
 Using arduino ESP32 Core version 1.0.6
 
-Developed & tested with a Sofar HYD6000-ES. Should work fine wist all the others, but if you test it on your inverters let me know how it goes!
+Developed & tested with a Sofar HYD6000-ES. Should work fine with all the others, but if you test it on your inverters let me know how it goes!
 
 Using SMA_CAN_protocol.pdf for the CAN IDs and data format info (google will find you the PDF)
 
