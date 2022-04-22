@@ -119,6 +119,8 @@ https://github.com/me-no-dev/AsyncTCP
 
 https://github.com/marvinroger/async-mqtt-client
 
+https://github.com/adafruit/Adafruit_SSD1306
+
 # Notes/links
 
 Developed on Arduino IDE 1.8.5. Version 1.6.14 failed to compile. Downgrade if you have issues
