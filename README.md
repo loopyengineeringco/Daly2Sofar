@@ -1,4 +1,4 @@
-# Daly2Sofar v0.9 - beta
+# Daly2Sofar v0.91 - beta
 ESP32 bridge allowing Daly Smart BMS to be used with a Sofar inverter/charger (and others that use SMA CANBUS protocol).
 ![image](https://user-images.githubusercontent.com/43951291/164516928-52ea70e6-35d5-4c46-9d18-d0e2efe84e6b.png)
 
