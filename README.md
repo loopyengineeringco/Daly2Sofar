@@ -123,6 +123,8 @@ https://github.com/adafruit/Adafruit_SSD1306
 
 # Notes/links
 
+CANH & CANL can be live swapped. If display is saying all is good but inverter isn't happy, try swapping the wires.
+
 Developed on Arduino IDE 1.8.5. Version 1.6.14 failed to compile. Downgrade if you have issues
 
 Using arduino ESP32 Core version 1.0.6
