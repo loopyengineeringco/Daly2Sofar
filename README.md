@@ -1,4 +1,4 @@
-# Daly2Sofar v0.91 - beta
+# Daly2Sofar v0.92 - beta
 ESP32 bridge allowing Daly Smart BMS to be used with a Sofar inverter/charger (and others that use SMA CANBUS protocol).
 ![image](https://user-images.githubusercontent.com/43951291/164516928-52ea70e6-35d5-4c46-9d18-d0e2efe84e6b.png)
 
@@ -104,8 +104,8 @@ This has some hard-coded variables - it's based on a 10kWh battery and 80% DOD. 
 
 # To do:
 - Do proper CANBUS status check. Currently, CAN indicator will go live after the data send, whether it's succesfull or not.
-- Fix battery capacity.
-- Figure out how to obtain battery cycles from BMS.
+- Add battery cycles: the owner of the Daly library is adding the functionality, and it will be reflected here when it's done.
+- Add charge/discharge control via MQTT (as soon as it's available in the Daly lib)
 - Tidy up code/refactor where poss.
 - Longer term stability testing.
 

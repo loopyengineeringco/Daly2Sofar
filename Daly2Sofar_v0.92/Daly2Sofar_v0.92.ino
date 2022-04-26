@@ -74,6 +74,7 @@ To do:
 - Need to figure out how to obtain battery cycles from BMS.
 - Tidy up code/refactor where poss.
 - Longer term stablity testing.
+- Fix ESP32 crash. I think it's because of the blocking Wire lib. Potentially try this https://github.com/nitacku/nI2C. For now, I disabled i2c display to see if it stops.
 
 Notes/dependencies:
 - Developed on Arduino IDE 1.8.5. IDE version 1.6.14 failed to compile. Downgrade if you have issues
@@ -86,19 +87,21 @@ Notes/dependencies:
 */
 
 // BATTERY CAPACITY (Doesn't really matter, as it's the BMS that works out the SOC)
-uint16_t batteryCapacity = 75; // Battery capacity - in AH. seems to be ignored
-float batteryChargeVoltage = 55.1; // Set your charge voltage - this doesn't come from BMS.
+uint16_t batteryCapacity = 190; // Battery capacity - in AH.
+float batteryChargeVoltage = 55; // Set your charge voltage - this doesn't come from BMS.
 
 // ENTER YOUR WIFI & MQTT BROKER DETAILS HERE
 
 #define WIFI_SSID "yourwifiname"
-#define WIFI_PASSWORD "yourwifipass"
+#define WIFI_PASSWORD "yourwifipassword"
 static const char mqttUser[] = "yourmqttlogin";
-static const char mqttPassword[] = "yourmqttpass";
+static const char mqttPassword[] = "yourmqttpassword";
 const char* deviceName = "Daly2Sofar"; //Device name is used as the MQTT base topic.
 
 #define MQTT_HOST IPAddress(192, 168, 0, 206) //replace with your MQTT server IP
 #define MQTT_PORT 1883
+
+
 
 
 
@@ -166,9 +169,11 @@ TimerHandle_t dalyRetryXTimer;
 bool WiFiStatus = false;
 bool MQTTStatus = false;
 
+uint8_t dalyRequestCounter = 0;
+
 // USER SETUP VALUES:
 unsigned long previousMillisUARTCAN = 0;   // will store last time a CAN Message was send
-const int intervalUARTCAN = 2000;          // interval at which send CAN Messages (milliseconds)
+const int intervalUARTCAN = 1000;          // interval at which send CAN Messages (milliseconds)
 
 unsigned long previousMillisWIFIMQTT = 0;
 const int intervalWIFIMQTT = 2000; 

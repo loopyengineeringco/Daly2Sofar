@@ -1,9 +1,64 @@
 void getEverythingFromDaly() {  
   // Grab values from BMS
-
   
+  dalyRequestCounter++;
 
-  
+  if (dalyRequestCounter > 3) {
+    dalyRequestCounter = 1;
+  }
+
+  if (dalyRequestCounter == 1) {
+    bms.getPackMeasurements(volts, amps, percentage);
+    vTaskDelay(100);
+    if ( volts == 0) {
+    //if ( bms.getPackMeasurements(volts, amps, percentage) == false) {
+      BMSOnline = false;
+      CANOnline = false;
+      Serial.println("No connection with BMS. Check TX/RX polarity, and that BMS is awake...");
+      oledMessage("No BMS found.", "Check TX/RX", "polarity,", "Make sure", "BMS is awake.");
+      xTimerStart(dalyRetryXTimer, 0);
+    } else {
+      watts = amps*volts;
+      BMSOnline = true;      
+      oledMessage("SOC: "+String(percentage)+"%", "Volts: "+String(volts)+"V", "Amps: "+String(amps)+"A", "Hi/Lo: "+String(minCellVoltage)+"/"+String(maxCellVoltage), "Temp: "+String(temp));
+    }
+  }
+
+  if (dalyRequestCounter == 2) {
+    bms.getPackTemp(temp);
+    vTaskDelay(100);
+    if ( temp == 0) {
+    //if ( bms.getPackTemp(temp) == false) {
+      BMSOnline = false;
+      CANOnline = false;
+      Serial.println("No connection with BMS. Check TX/RX polarity, and that BMS is awake...");
+      oledMessage("No BMS found.", "Check TX/RX", "polarity,", "Make sure", "BMS is awake.");
+      xTimerStart(dalyRetryXTimer, 0);
+    } else {
+      BMSOnline = true;      
+      oledMessage("SOC: "+String(percentage)+"%", "Volts: "+String(volts)+"V", "Amps: "+String(amps)+"A", "Hi/Lo: "+String(minCellVoltage)+"/"+String(maxCellVoltage), "Temp: "+String(temp));
+    }
+  }
+
+  if (dalyRequestCounter == 3) {
+    bms.getMinMaxCellVoltage(minCellVoltage, minCellNumber, maxCellVoltage, maxCellNumber);
+    vTaskDelay(100);
+    if (  minCellVoltage == 0) {
+    //if ( bms.getMinMaxCellVoltage(minCellVoltage, minCellNumber, maxCellVoltage, maxCellNumber) == false) {
+      BMSOnline = false;
+      CANOnline = false;
+      Serial.println("No connection with BMS. Check TX/RX polarity, and that BMS is awake...");
+      oledMessage("No BMS found.", "Check TX/RX", "polarity,", "Make sure", "BMS is awake.");
+      xTimerStart(dalyRetryXTimer, 0);
+    } else {
+      BMSOnline = true;
+      cellImbalance = (maxCellVoltage-minCellVoltage)*1000;
+      oledMessage("SOC: "+String(percentage)+"%", "Volts: "+String(volts)+"V", "Amps: "+String(amps)+"A", "Hi/Lo: "+String(minCellVoltage)+"/"+String(maxCellVoltage), "Temp: "+String(temp));
+    }
+  }
+
+
+/*
   if (bms.getPackMeasurements(volts, amps, percentage) == false){
     BMSOnline = false;
     CANOnline = false;
@@ -11,13 +66,12 @@ void getEverythingFromDaly() {
     oledMessage("No BMS found.", "Check TX/RX", "polarity,", "Make sure", "BMS is awake.");
     xTimerStart(dalyRetryXTimer, 0);
   } else {
-    //delay(20);
+    //delay(20);    
     bms.getPackTemp(temp);
     bms.getMinMaxCellVoltage(minCellVoltage, minCellNumber, maxCellVoltage, maxCellNumber);
     //delay(20);
     //delay(20);
     watts = amps*volts;
-    cellImbalance = (maxCellVoltage-minCellVoltage)*1000;
     oledMessage("SOC: "+String(percentage)+"%", "Volts: "+String(volts)+"V", "Amps: "+String(amps)+"A", "Hi/Lo: "+String(minCellVoltage)+"/"+String(maxCellVoltage), "Temp: "+String(temp));
     BMSOnline = true;
     // Print above to Serial
@@ -30,6 +84,8 @@ void getEverythingFromDaly() {
     //Serial.printf("Max Cell: Cell #%d at %4.3f\n",maxCellNumber,maxCellVoltage);
     //Serial.printf("Min Cell: Cell #%d at %4.3f\n",minCellNumber,minCellVoltage);
   }
+
+  */
 }
 
 void dalyRetry() {
@@ -67,6 +123,6 @@ void updateTXFrames() {
   CANData356[7] = int16temp>>8;
   
   // Battery capacity = fixed value from setup section
-  CANData35F[7] = batteryCapacity;    // Arduino/C is big endian. So needs to shift the opposite way of the SMA protocol.
-  CANData35F[6] = batteryCapacity>>8; // Currently reporting 51200ah :-D obvs wrong...
+  CANData35F[6] = batteryCapacity;    // Arduino/C is big endian. So needs to shift the opposite way of the SMA protocol.
+  CANData35F[7] = batteryCapacity>>8; // Currently reporting 51200ah :-D obvs wrong...
 }

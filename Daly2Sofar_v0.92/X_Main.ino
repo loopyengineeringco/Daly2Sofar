@@ -1,4 +1,7 @@
 void setup() {
+  //rtc_wdt_protect_off();
+  //rtc_wdt_disable();
+
   Serial.begin(115200);
   Serial.println("Daly2Sofar-UARTtoCANBUS v1");
   
@@ -21,7 +24,7 @@ void setup() {
   display.clearDisplay();
   display.display();
   oledMessage("Hi", "Ola!", "Hello", "Labas", "Zdravstvuyte");
-  delay(500);
+  //delay(500);
 
   mqttReconnectTimer = xTimerCreate("mqttTimer", pdMS_TO_TICKS(5000), pdFALSE, (void*)0, reinterpret_cast<TimerCallbackFunction_t>(connectToMqtt));
   wifiReconnectTimer = xTimerCreate("wifiTimer", pdMS_TO_TICKS(2000), pdFALSE, (void*)0, reinterpret_cast<TimerCallbackFunction_t>(connectToWifi));
