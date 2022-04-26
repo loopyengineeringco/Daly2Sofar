@@ -74,7 +74,6 @@ To do:
 - Need to figure out how to obtain battery cycles from BMS.
 - Tidy up code/refactor where poss.
 - Longer term stablity testing.
-- Fix ESP32 crash. I think it's because of the blocking Wire lib. Potentially try this https://github.com/nitacku/nI2C. For now, I disabled i2c display to see if it stops.
 
 Notes/dependencies:
 - Developed on Arduino IDE 1.8.5. IDE version 1.6.14 failed to compile. Downgrade if you have issues
