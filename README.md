@@ -102,7 +102,7 @@ Make sure you customise them if you want to use this Flow :-)
 ![image](https://user-images.githubusercontent.com/43951291/166910615-47297ec8-0477-4fcf-b30d-cc008e25f745.png)
 
 Home Assistant dashboard example
-![image](https://user-images.githubusercontent.com/43951291/166925554-19b62b17-ead4-4596-bd9f-38c1d74626e7.png)
+![image](https://user-images.githubusercontent.com/43951291/166928175-bbf1b5a7-a5f7-41d0-8a70-b6e47e459800.png)
 
 # To do:
 - Do proper CANBUS status check. Currently, CAN indicator will go live after the data send, whether it's succesfull or not.
