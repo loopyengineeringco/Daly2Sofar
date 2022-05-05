@@ -1,4 +1,4 @@
-# Daly2Sofar v0.92 - beta
+# Daly2Sofar v0.93 - beta
 ESP32 bridge allowing Daly Smart BMS to be used with a Sofar inverter/charger (and others that use SMA CANBUS protocol).
 ![image](https://user-images.githubusercontent.com/43951291/164516928-52ea70e6-35d5-4c46-9d18-d0e2efe84e6b.png)
 
@@ -89,17 +89,20 @@ cellimbalance
 
 # Node-RED
 For extracting the data into Home Asisstant sensors, use Node-Red. You can import the ```Daly2Sofar Node-Red to Home Assistant flow.json```flow to extract the data into sensor entities, it will look like this:
-![Daly2Sofar Node-Red to HA example](https://user-images.githubusercontent.com/43951291/164437077-1af12d01-b174-4be1-bb78-2a273e6da55a.jpg)
+![image](https://user-images.githubusercontent.com/43951291/166910404-52b77566-ff52-444a-bd41-08b7f5ddcaa1.png)
+
 (you may need to install Moving Average filter if you want smoothing of data)
 
 Home Assistant dashboard example
 ![Home Assistant sensors example](https://user-images.githubusercontent.com/43951291/164439575-7c585c8e-12b4-412a-9ef5-60dd962c2ea7.jpg)
 
 When the battery is discharging, Node-RED will calculate the remaining battery time based on the current discharge rate.
-This has some hard-coded variables - it's based on a 10kWh battery and 80% DOD. Make sure you customise them if you want to use this Flow :-)
-![image](https://user-images.githubusercontent.com/43951291/164440385-f34659a5-c4ad-48e3-82c1-d9a69adf85bb.png)
+When it's charging, it will calculate the time left to full charge.
+Because charging/discharging and SOC isn't linear, this value is only a rough estimation, but useful nonetheless.
 
-![image](https://user-images.githubusercontent.com/43951291/164440193-95620cbc-c11d-4a18-8acf-261b9363472a.png)
+This has some hard-coded variables - it's based on a 10kWh battery and 80% DOD, and also what percentage to consider 'full' 95% in my case.
+Make sure you customise them if you want to use this Flow :-)
+![image](https://user-images.githubusercontent.com/43951291/166910615-47297ec8-0477-4fcf-b30d-cc008e25f745.png)
 
 
 # To do:
