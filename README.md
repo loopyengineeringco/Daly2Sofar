@@ -93,9 +93,6 @@ For extracting the data into Home Asisstant sensors, use Node-Red. You can impor
 
 (you may need to install Moving Average filter if you want smoothing of data)
 
-Home Assistant dashboard example
-![Home Assistant sensors example](https://user-images.githubusercontent.com/43951291/164439575-7c585c8e-12b4-412a-9ef5-60dd962c2ea7.jpg)
-
 When the battery is discharging, Node-RED will calculate the remaining battery time based on the current discharge rate.
 When it's charging, it will calculate the time left to full charge.
 Because charging/discharging and SOC isn't linear, this value is only a rough estimation, but useful nonetheless.
@@ -104,6 +101,8 @@ This has some hard-coded variables - it's based on a 10kWh battery and 80% DOD, 
 Make sure you customise them if you want to use this Flow :-)
 ![image](https://user-images.githubusercontent.com/43951291/166910615-47297ec8-0477-4fcf-b30d-cc008e25f745.png)
 
+Home Assistant dashboard example
+![Home Assistant sensors example](https://user-images.githubusercontent.com/43951291/164439575-7c585c8e-12b4-412a-9ef5-60dd962c2ea7.jpg)
 
 # To do:
 - Do proper CANBUS status check. Currently, CAN indicator will go live after the data send, whether it's succesfull or not.
