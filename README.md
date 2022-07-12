@@ -17,7 +17,10 @@ My testing showed that Daly UART port works on 3.3v. PLEASE measure yours before
 
 ![Daly2Sofar_3](https://user-images.githubusercontent.com/43951291/164450894-d7f85e7a-e5d1-40e6-8250-39d048bfd524.jpg)
 
-
+!!!
+Due to updates to the Daly library dependency, compilation might throw an error.
+Please look at the Issues page for the temporary solution while I do further testing
+!!!
 
 # PSA:
 USE THIS AT YOUR OWN RISK!
