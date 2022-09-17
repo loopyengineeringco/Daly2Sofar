@@ -1,6 +1,6 @@
 # !!!
 Due to updates to the Daly library dependency, compilation might throw an error.
-Please look at the Issues page for the temporary solution while I do further testing
+Please look at the Issues page for the temporary solution while I do further testing, or use the older version of the Daly lib which is in the Arduino dependencies folder.
 !!!
 
 # Daly2Sofar v0.93 - beta
