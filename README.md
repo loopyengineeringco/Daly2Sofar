@@ -45,8 +45,7 @@ It might be higher or lower voltage potential, in respect to earth.
 
 The Daly needs to be isolated in this case, using a digital isolation IC.
 Opto-coupler's don't work as the signal becomes inverted. ESP32 serial can be inverted by software but Daly can't.
-I used a IL716-3E isolator IC and soldered dupont pins to it's legs - it's tiny, it's not easy!
-If you find an isolator IC module that is cheap and works without soldering, please let me know!
+IL716-3E based isolator IC works, as well as the cheap off-the shelf ADUM1201 based modules.
 
 
 # ESP32 pin remapping
